@@ -1,7 +1,7 @@
 #page-auth-user {
   display: flex;
   align-items: stretch;
-  height: auto;
+  height: 100vh;
 }
 
 aside {
@@ -37,29 +37,30 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
-    align-items: stretch;
+    max-width: 520px;
+    align-items: center;
     text-align: center;
     margin-left: 150px;
-    margin-top: 50px;
+    margin-top: 10px;
 
     strong {
       font: 700 30px 'Poppins', sans-serif;
       line-height: 42px;
       margin-top: 16px;
+      margin-left: 130px;
       color: #835afd;
     }
   }
 
   .cad-user {
     font: 700 18px 'Poppins', sans-serif;
-    line-height: 5px;
-    margin-top: 16px;
+    line-height: 10px;
+    margin-top: 10px;
     margin-left: 120px;
   }
 
   .box-user {
-    width: 70%;
+    width: 80%;
     height: 30px;
     border-radius: 8px;
     padding: 0 16px;
@@ -68,5 +69,9 @@ main {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 0px;
+  }
+
+  .bot {
+    width: 115%;
   }
 }

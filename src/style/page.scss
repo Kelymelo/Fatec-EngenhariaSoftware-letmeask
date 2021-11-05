@@ -30,7 +30,7 @@ main {
   flex: 8;
 
   padding: 0 32px;
-  //display: grid;
+  display: grid;
   align-items: center;
   justify-content: center;
 
@@ -41,7 +41,7 @@ main {
     max-width: 320px;
     align-items: center;
     text-align: center;
-    line-height: 10%;
+    line-height: 10px;
     margin-top: 16px;
     margin-left: 16px;
 
@@ -50,20 +50,21 @@ main {
       line-height: 42px;
       margin-top: 16px;
       color: #835afd;
-      margin-left: 220px;
+      margin-left: 260px;
       display: block;
     }
 
     .tema-1 {
-      margin-left: 300px;
-      display: block;
+      margin-left: 500px;
+      display: flex;
+      margin-top: 5px;
     }
   }
 
   .cad {
     font: 700 18px 'Poppins', sans-serif;
     line-height: 5px;
-    margin-top: 16px;
+    margin-top: 5px;
     margin-left: 120px;
   }
 

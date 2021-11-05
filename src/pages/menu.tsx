@@ -15,8 +15,12 @@ export function Menu(){
     history.push('/room/CadastroProd');
   }
 
-  function navigateToEntradaSaidaProd(){
-    history.push('/room/EntradaSaidaProd');
+  function navigateToEntradaProd(){
+    history.push('/room/EntradaProd');
+  }
+
+  function navigateToSaidaProd(){
+    history.push('/room/SaidaProd');
   }
 
   function navigateToConsultaEstoque(){
@@ -47,7 +51,8 @@ export function Menu(){
        
       <div className="buttonMenu">               
         <Button onClick={navigateToCadastroProd} type="submit">Cadastro de Produtos</Button>
-        <Button onClick={navigateToEntradaSaidaProd} type="submit">Entrada e Saída de Produtos</Button>
+        <Button onClick={navigateToEntradaProd} type="submit">Entrada de Produtos</Button>
+        <Button onClick={navigateToSaidaProd} type="submit">Saída de Produtos</Button>
         <Button onClick = {navigateToConsultaEstoque} type="submit">Consulta Estoque</Button>
         <Button onClick = {navigateToCadastroUsuario} type="submit">Cadastro Usuário</Button>
         <Button onClick = {navigateToSair}type="submit">Sair</Button>        

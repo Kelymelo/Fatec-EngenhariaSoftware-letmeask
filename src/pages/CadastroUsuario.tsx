@@ -1,9 +1,65 @@
+import {FormEvent,useState} from 'react'
+import{useHistory} from 'react-router-dom'
+
+import api from '../services/api'
+
 import illustrationImg from '../assets/images/illustration.svg';
 import { Button } from '../components/Button';
 
 import '../style/admin.scss';
 
 export function CadastroUser(){
+
+  const [id, setId] = useState(null);
+  const [nomeUser, setNomeUser] = useState('');
+  const [logradouroUser, setLogradouroUser] = useState('');
+  const [bairroUser, setBairroUser] = useState('');
+  const [cidadeUser, setCidadeUser] = useState('');
+  const [ufUser, setUfUser] = useState('');
+  const [cepUser, setCepUser] = useState('');
+  const [telefoneUser, setTelefoneUser] = useState('');
+  const [loginUser, setLoginUser] = useState('');  
+  const [passwordUser, setPasswordUser] = useState('');
+  const [dataCadastroUser, setDataCadastroUser] = useState('');
+
+  const acessToken = localStorage.getItem('token');
+
+  const history = useHistory();
+
+  async function cadastroUsuario(event: FormEvent) {
+    event.preventDefault();
+
+    const data = {
+      nomeUser,
+      logradouroUser,
+      bairroUser,
+      cidadeUser,
+      ufUser,
+      cepUser,
+      telefoneUser,
+      loginUser,
+      passwordUser,
+      dataCadastroUser,      
+    }
+
+    try {
+      await api.post('api/book/v1', data,{
+        headers:{
+          Authorization: `Bearer ${acessToken}`
+        }
+      });
+      history.push('/room/Menu');
+
+    } catch (error) {
+      alert('Erro ao cadastrar o usuário! Tente novamente!');
+    }
+
+  }
+
+  function navigateToMenu(){
+    history.push('/room/Menu');
+  }
+
   return(
     <div id="page-auth-user">
       <aside>
@@ -13,19 +69,18 @@ export function CadastroUser(){
       <main>
         <div className="main-content-page-user">
           <strong>Cadastro de Usuários</strong>
-        </div>
+        </div>        
+        
 
-        <br />
-        <br />
-        <br />
-
-        <form>          
+        <form onSubmit={cadastroUsuario}>          
           <div className ="form-group-user">
             <label className="cad-user" htmlFor="codeP">Nome completo</label>            
             <input 
             className ="box-user"
             type="text"
             placeholder="Digite o nome completo"
+            value={nomeUser}
+            onChange={event =>setNomeUser(event.target.value)}
             /> 
 
             <label className="cad-user" htmlFor="codeP">Endereço</label>            
@@ -33,6 +88,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o endereço"
+            value={logradouroUser}
+            onChange={event => setLogradouroUser(event.target.value)}
             />
 
             <label className="cad-user" htmlFor="codeP">Bairro</label>            
@@ -92,8 +149,9 @@ export function CadastroUser(){
             
           </div>
 
-          <div>
-            <Button type="submit">Enviar</Button>         
+          <div className="bot">
+            <Button type="submit">Enviar</Button>            
+            <Button onClick={navigateToMenu} type="submit">Menu</Button>         
           </div>        
           
         </form>

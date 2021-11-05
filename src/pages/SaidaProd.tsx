@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 
 import '../style/page.scss';
 
-export function ConsultaEstoque(){
+export function SaidaProd(){
 
   const history = useHistory();
 
@@ -21,10 +21,13 @@ export function ConsultaEstoque(){
       </aside>
       <main>
         <div className="main-content-page">
-          <h1><strong className= "tema">Consulta Estoque</strong></h1>
-        </div>             
+          <h1><strong className= "tema">Saída de Produtos</strong></h1>
+        </div>
 
-        <form>                                     
+        <br />
+
+        <form>
+                    
           <div className ="form-group">
             <label className="cad" htmlFor="codeP">Código Produto</label>
             <br />
@@ -32,18 +35,24 @@ export function ConsultaEstoque(){
             className ="box"
             type="text"
             placeholder="Digite o código do produto"
-            
             />
             <br />
-          </div>
 
-          <div className ="form-group">
             <label className="cad" htmlFor="nameP">Produto</label>                
             <input
             className ="box" 
             type="text"
             placeholder="Nome Produto"
             disabled
+            />
+            <br />
+
+            <label className="cad" htmlFor="quantity">Quantidade</label>
+            <br />
+            <input
+            className ="box" 
+            type="text"
+            placeholder="Digite a quantidade"
             />
             <br />
 
@@ -57,10 +66,19 @@ export function ConsultaEstoque(){
             />
             <br />
 
+            <label className="cad" htmlFor="dateSaida">Data</label>
+            <br />
+            <input
+            className ="box" 
+            type="date"
+            id="DataSaida"
+            name="DataSaida"            
+            />
+
           </div>
                     
-          <Button type="submit">Consultar</Button>
-          <Button type="submit">Nova consulta</Button>
+          <Button type="submit">Confirmar</Button>
+          <Button type="submit">Cancelar</Button>
           <Button onClick={navigateToMenu} type="submit">Menu</Button>
                   
         </form>

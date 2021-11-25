@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'localhost:8080',
+  baseURL: 'http://api-backend.eastus2.cloudapp.azure.com',
 });
 
 export { api };

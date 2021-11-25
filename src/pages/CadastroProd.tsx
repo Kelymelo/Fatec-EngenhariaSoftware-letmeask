@@ -1,7 +1,7 @@
 import {FormEvent,useState} from 'react'
 import{useHistory} from 'react-router-dom'
 
-import api from '../services/api'
+import {api} from '../services/api2';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import { Button } from '../components/Button';
@@ -10,10 +10,10 @@ import '../style/page.scss';
 
 export function CadastroProd(){
 
-  const [id, setId] = useState(null);
-  const [nomeProd, setNomeProd] = useState('');
-  const [categoriaProd, setCategoriaProd] = useState('');
-  const [dataCadastro, setDataCadastro] = useState('');
+  //const [id, setId] = useState(null);
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [categoria, setCategoria] = useState('');
+  const [date, setDate] = useState('');
 
   const acessToken = localStorage.getItem('token');
 
@@ -23,13 +23,13 @@ export function CadastroProd(){
     event.preventDefault();
 
     const data ={
-      nomeProd,
-      categoriaProd,
-      dataCadastro,
+      nomeProduto,
+      categoria,
+      date,
     }
 
     try {
-      await api.post('api/book/v1', data,{
+      await api.post('/cadastroP', data,{
         headers:{
           Authorization: `Bearer ${acessToken}`
         }
@@ -64,16 +64,16 @@ export function CadastroProd(){
             className ="box"
             type="text"
             placeholder="Digite o nome do produto"
-            value={nomeProd}
-            onChange={event => setNomeProd(event.target.value)}
+            value={nomeProduto}
+            onChange={event => setNomeProduto(event.target.value)}
             /> 
           
             <label className="cad" htmlFor="nameP">Categoria</label>                   
             <select 
             name="categories" 
             id="op" 
-            value={categoriaProd} 
-            onChange={event => setCategoriaProd(event.target.value)}>
+            value={categoria} 
+            onChange={event => setCategoria(event.target.value)}>
               <option value="fenda">chaves de Fenda</option>
               <option value="philips">chaves philips</option>
               <option value="rosca">chaves rosca</option>
@@ -83,8 +83,8 @@ export function CadastroProd(){
             <input
             className ="box" 
             type="date"
-            value ={dataCadastro}
-            onChange={event => setDataCadastro(event.target.value)}
+            value ={date}
+            onChange={event => setDate(event.target.value)}
             />
             
           </div>

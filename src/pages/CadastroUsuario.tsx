@@ -1,7 +1,7 @@
 import {FormEvent,useState} from 'react'
 import{useHistory} from 'react-router-dom'
 
-import api from '../services/api'
+import {api} from '../services/api2';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import { Button } from '../components/Button';
@@ -10,17 +10,17 @@ import '../style/admin.scss';
 
 export function CadastroUser(){
 
-  const [id, setId] = useState(null);
-  const [nomeUser, setNomeUser] = useState('');
-  const [logradouroUser, setLogradouroUser] = useState('');
-  const [bairroUser, setBairroUser] = useState('');
-  const [cidadeUser, setCidadeUser] = useState('');
-  const [ufUser, setUfUser] = useState('');
-  const [cepUser, setCepUser] = useState('');
-  const [telefoneUser, setTelefoneUser] = useState('');
-  const [loginUser, setLoginUser] = useState('');  
-  const [passwordUser, setPasswordUser] = useState('');
-  const [dataCadastroUser, setDataCadastroUser] = useState('');
+  //const [id, setId] = useState(null);
+  const [nome, setNome] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [estado, setEstado] = useState('');
+  const [cep, setCep] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [login, setLogin] = useState('');  
+  const [password, setPassword] = useState('');
+  const [dataCadastro, setDataCadastro] = useState('');
 
   const acessToken = localStorage.getItem('token');
 
@@ -30,20 +30,20 @@ export function CadastroUser(){
     event.preventDefault();
 
     const data = {
-      nomeUser,
-      logradouroUser,
-      bairroUser,
-      cidadeUser,
-      ufUser,
-      cepUser,
-      telefoneUser,
-      loginUser,
-      passwordUser,
-      dataCadastroUser,      
+      nome,
+      endereco,
+      bairro,
+      cidade,
+      estado,
+      cep,
+      telefone,
+      login,
+      password,
+      dataCadastro,      
     }
 
     try {
-      await api.post('api/book/v1', data,{
+      await api.post('/clientes', data,{
         headers:{
           Authorization: `Bearer ${acessToken}`
         }
@@ -79,8 +79,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o nome completo"
-            value={nomeUser}
-            onChange={event =>setNomeUser(event.target.value)}
+            value={nome}
+            onChange={event =>setNome(event.target.value)}
             /> 
 
             <label className="cad-user" htmlFor="codeP">Endereço</label>            
@@ -88,8 +88,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o endereço"
-            value={logradouroUser}
-            onChange={event => setLogradouroUser(event.target.value)}
+            value={endereco}
+            onChange={event => setEndereco(event.target.value)}
             />
 
             <label className="cad-user" htmlFor="codeP">Bairro</label>            
@@ -97,6 +97,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o bairro"
+            value={bairro}
+            onChange={event => setBairro(event.target.value)}
             /> 
 
             <label className="cad-user" htmlFor="codeP">Cidade</label>            
@@ -104,6 +106,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o cidade"
+            value={cidade}
+            onChange={event => setCidade(event.target.value)}
             />
 
              <label className="cad-user" htmlFor="codeP">Estado</label>            
@@ -111,6 +115,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o estado"
+            value={estado}
+            onChange={event => setEstado(event.target.value)}
             />
 
              <label className="cad-user" htmlFor="codeP">CEP</label>            
@@ -118,6 +124,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o CEP"
+            value={cep}
+            onChange={event => setCep(event.target.value)}
             />
 
              <label className="cad-user" htmlFor="codeP">Telefone</label>            
@@ -125,6 +133,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o telefone"
+            value={telefone}
+            onChange={event => setTelefone(event.target.value)}
             />
 
              <label className="cad-user" htmlFor="codeP">Usuário</label>            
@@ -132,6 +142,8 @@ export function CadastroUser(){
             className ="box-user"
             type="text"
             placeholder="Digite o usuário"
+            value={login}
+            onChange={event => setLogin(event.target.value)}
             />
 
              <label className="cad-user" htmlFor="codeP">Senha</label>            
@@ -139,12 +151,16 @@ export function CadastroUser(){
             className ="box-user"
             type="password"
             placeholder="Digite a senha"
+            value={password}
+            onChange={event => setPassword(event.target.value)}
             />                        
           
             <label className="cad-user" htmlFor="dateCadastro">Data</label>
             <input
             className ="box-user" 
             type="date"
+            value={dataCadastro}
+            onChange={event => setDataCadastro(event.target.value)}
             />
             
           </div>

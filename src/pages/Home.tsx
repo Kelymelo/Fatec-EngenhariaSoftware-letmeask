@@ -1,6 +1,6 @@
-import {FormEvent,useState} from 'react';
+import React,{FormEvent,useState} from 'react';
 import{useHistory} from 'react-router-dom';
-import api from '../services/api';
+import {api} from '../services/api2';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import { Button } from '../components/Button';
@@ -9,8 +9,8 @@ import '../style/auth.scss';
 
 export function Home(){
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   
   const history = useHistory();
 
@@ -18,24 +18,23 @@ export function Home(){
     event.preventDefault();
 
       const data = {
-        username,
-        password,
+        email,
+        senha,
       };
 
       try {
-        const response = await api.post('auth/signin',data);
+        const response:any = await api.post('/login',data);
         
-       /*localStorage.setItem('user', username); 
-       localStorage.setItem('token', response.data.token);*/
+        localStorage.setItem('email', email); 
+        localStorage.setItem('acessToken', response.data.senha);
 
         history.push('/room/Menu');
         
       } catch (error) {
+        
         alert('Login invalido! Tente novamente!');
       }
   }
-
-  
 
   return(
     <div id="page-auth">
@@ -55,16 +54,16 @@ export function Home(){
             type="email"
             name="email"
             placeholder="Digite o email"
-            value={username}
-            onChange={event => setUsername(event.target.value)}
+            value={email}
+            onChange={event => setEmail(event.target.value)}
             />          
 
             <input 
             type="password"
-            name="password"
+            name="senha"
             placeholder="Digite a senha"
-            value={password}
-            onChange={event => setPassword(event.target.value)}
+            value={senha}
+            onChange={event => setSenha(event.target.value)}
             />
           </div>
 
